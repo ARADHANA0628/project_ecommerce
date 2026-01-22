@@ -1,5 +1,6 @@
 import 'package:e_commerce/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -19,7 +20,7 @@ class AccountScreen extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'Welcome to E-Commerce',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.laila(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 5),
               Text('Lets make your account.'),

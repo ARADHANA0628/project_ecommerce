@@ -1,5 +1,6 @@
 import 'package:e_commerce/newpass.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen ({super.key});
@@ -19,7 +20,7 @@ class OtpScreen extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'Enter Verification Code',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.laila(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 5),
               Text('We will send you a message to set or reset your new password',),

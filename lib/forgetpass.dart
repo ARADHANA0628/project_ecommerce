@@ -1,5 +1,6 @@
 import 'package:e_commerce/otp.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ForgotpassScreen extends StatelessWidget {
   const ForgotpassScreen ({super.key});
@@ -21,7 +22,7 @@ class ForgotpassScreen extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'Forgot Password',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:  GoogleFonts.laila(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 5),
               Text('We will send you a message to set or reset your new password'),

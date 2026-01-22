@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NewpassScreen extends StatelessWidget {
   const NewpassScreen ({super.key});
@@ -20,7 +21,7 @@ class NewpassScreen extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'New Password',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.laila(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 5),
               Text('Set new passsword for your account'),

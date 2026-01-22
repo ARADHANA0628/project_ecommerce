@@ -1,5 +1,6 @@
 import 'package:e_commerce/account.dart';
 import 'package:e_commerce/forgetpass.dart';
+import 'package:e_commerce/homepage.dart';
 import 'package:e_commerce/newpass.dart';
 import 'package:e_commerce/otp.dart';
 import 'package:e_commerce/signin.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
        debugShowCheckedModeBanner: false,
-      home: SigninScreen(),
+      home: Homepage(),
     );
   }
 }

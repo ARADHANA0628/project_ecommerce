@@ -1,6 +1,8 @@
 import 'package:e_commerce/account.dart';
 import 'package:e_commerce/forgetpass.dart';
+import 'package:e_commerce/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SigninScreen extends StatelessWidget {
   const SigninScreen({super.key});
@@ -31,7 +33,7 @@ class SigninScreen extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'Welcome to E-Commerce',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.laila(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 5),
               Text('Sign in to continue'),
@@ -75,9 +77,15 @@ class SigninScreen extends StatelessWidget {
                   ),
                 ),
 
-                child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                child: InkWell(onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => Homepage()),
+                  );
+                },
+                  child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
