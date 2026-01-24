@@ -10,17 +10,24 @@ class Homepage extends StatelessWidget {
       'assets/images/Top1.jpg',
       'assets/images/Top2.jpg',
       'assets/images/Top3.jpg',
+      'assets/images/Top4.jpg',
     ];
+
+    final collectionItems = [
+      {'image': 'assets/images/Top1.jpg', 'title': 'Stylish Top'},
+      {'image': 'assets/images/Top2.jpg', 'title': 'Casual Wear'},
+      {'image': 'assets/images/Top3.jpg', 'title': 'Modern Style'},
+    ];
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: const Padding(
           padding: EdgeInsets.only(left: 10),
           child: CircleAvatar(
             backgroundImage: AssetImage('assets/images/logo2.png'),
-            // child: Icon(Icons.person)
           ),
         ),
-        backgroundColor: Colors.white,
         title: Text(
           'E-commerce',
           style: GoogleFonts.laila(fontWeight: FontWeight.bold),
@@ -32,148 +39,133 @@ class Homepage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 10,
-              right: 10,
-              bottom: 10,
-              top: 20,
-            ),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  ss(
-                    const Color.fromARGB(255, 171, 197, 201),
-                    'Categories',
-                    'assets/images/Icon.png',
-                  ),
-                  const SizedBox(width: 10),
-                  ss(
-                    const Color.fromARGB(255, 130, 37, 129),
-                    'Men',
-                    'assets/images/Men.png',
-                  ),
-                  const SizedBox(width: 10),
-                  ss(Colors.black, 'Women', 'assets/images/Women.png'),
-                  const SizedBox(width: 10),
-                  ss(Colors.deepOrangeAccent, 'Kids', 'assets/images/Kids.png'),
-                  const SizedBox(width: 10),
-                  ss(
-                    const Color.fromARGB(255, 14, 150, 139),
-                    'Western Wear',
-                    'assets/images/Western Wear.png',
-                  ),
-                  const SizedBox(width: 10),
-                  ss(
-                    const Color.fromARGB(255, 33, 59, 188),
-                    'Winter Wear',
-                    'assets/images/Winter Wear.png',
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Image.asset('assets/images/Main.png'),
 
-          // Container(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
 
-          //   margin: const EdgeInsets.all(10),
-          //   height: 350,
-          //   width: double.infinity,
-          //   decoration: BoxDecoration(
-          //     color: Colors.blueGrey.shade100,
-          //     // borderRadius: BorderRadius.circular(12),
-          //   ),
-          //   child:  Center(
-          //     child: Column(
-
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       children: [
-
-          // Text(
-          //   'FOREVER 21',
-          //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          // ),
-          // Text('Big Fashion Festival'),
-          // Text('70% - 80% Off')
-          //       ],
-          //     ),
-
-          //   ),
-          //  ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              child: Text(
-                'Deals Of The Day',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+            /// 🔹 Categories Section
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    categoryItem(const Color(0xFFABC5C9), 'Categories', 'assets/images/Icon.png'),
+                    categoryItem(const Color(0xFF822581), 'Men', 'assets/images/Men.png'),
+                    categoryItem(Colors.black, 'Women', 'assets/images/Women.png'),
+                    categoryItem(Colors.deepOrangeAccent, 'Kids', 'assets/images/Kids.png'),
+                    categoryItem(const Color(0xFF0E968B), 'Western ', 'assets/images/Western Wear.png'),
+                    categoryItem(const Color(0xFF213BBC), 'Winter Wear', 'assets/images/Winter Wear.png'),
+                  ],
                 ),
               ),
             ),
-          ),
 
-          
-          SizedBox(
-            height: 420,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 4.0,
-              ),
+            /// 🔹 Banner
+            Image.asset('assets/images/Main.png'),
+
+            /// 🔹 Deals of the Day Section
+            sectionTitle('Deals Of The Day'),
+            SizedBox(
+              height: 420,
               child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 itemCount: dealImages.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  
-                  childAspectRatio: 212 / 200,
+                  mainAxisSpacing: 20,
                 ),
                 itemBuilder: (context, index) {
-                  final img = dealImages[index];
-                  return Container(
-                    margin: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      color: Colors.blueGrey.shade100,
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                        image: AssetImage(img),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  );
+                  return dealItem(dealImages[index]);
                 },
               ),
             ),
+
+            /// 🔹 Collection Section
+            sectionTitle('Collection'),
+            const SizedBox(height: 20),
+            Center(
+              child: Column(
+                children: collectionItems.map((item) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: collectionItem(item['image']!, item['title']!),
+                  );
+                }).toList(),
+              ),
+            ),
+
+            const SizedBox(height: 40),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 🔹 Reusable Category Item
+  Widget categoryItem(Color color, String title, String image) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Column(
+        children: [
+          Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(30),
+              image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+            ),
           ),
+          const SizedBox(height: 5),
+          Text(title, style: GoogleFonts.laila(fontWeight: FontWeight.bold)),
         ],
       ),
     );
   }
 
-  Widget ss(Color c, String t, String image) {
+  /// 🔹 Section Title Widget
+  Widget sectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      child: Text(
+        title,
+        style: GoogleFonts.laila(fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  /// 🔹 Deal Item Widget
+  Widget dealItem(String image) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+      ),
+    );
+  }
+
+  /// 🔹 Collection Item Widget (Image + Centered Text)
+  Widget collectionItem(String image, String title) {
     return Column(
       children: [
         Container(
-          height: 60,
-          width: 60,
+          height: 250,
+          width: 250,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: c,
-            image: image.isNotEmpty
-                ? DecorationImage(image: AssetImage(image), fit: BoxFit.cover)
-                : null,
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
           ),
         ),
-        const SizedBox(height: 5),
-        Text(t, style: const TextStyle(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.laila(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
