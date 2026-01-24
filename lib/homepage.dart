@@ -6,6 +6,11 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dealImages = [
+      'assets/images/Top1.jpg',
+      'assets/images/Top2.jpg',
+      'assets/images/Top3.jpg',
+    ];
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(
@@ -13,7 +18,7 @@ class Homepage extends StatelessWidget {
           child: CircleAvatar(
             backgroundImage: AssetImage('assets/images/logo2.png'),
             // child: Icon(Icons.person)
-            ),
+          ),
         ),
         backgroundColor: Colors.white,
         title: Text(
@@ -52,14 +57,9 @@ class Homepage extends StatelessWidget {
                     'assets/images/Men.png',
                   ),
                   const SizedBox(width: 10),
-                  ss(Colors.black, 
-                  'Women',
-                   'assets/images/Women.png'
-                   ),
+                  ss(Colors.black, 'Women', 'assets/images/Women.png'),
                   const SizedBox(width: 10),
-                  ss(Colors.deepOrangeAccent, 
-                  'Kids', 
-                  'assets/images/Kids.png'),
+                  ss(Colors.deepOrangeAccent, 'Kids', 'assets/images/Kids.png'),
                   const SizedBox(width: 10),
                   ss(
                     const Color.fromARGB(255, 14, 150, 139),
@@ -76,10 +76,10 @@ class Homepage extends StatelessWidget {
               ),
             ),
           ),
-           Image.asset('assets/images/Main.png'),
+          Image.asset('assets/images/Main.png'),
 
           // Container(
-            
+
           //   margin: const EdgeInsets.all(10),
           //   height: 350,
           //   width: double.infinity,
@@ -92,14 +92,13 @@ class Homepage extends StatelessWidget {
 
           //       mainAxisAlignment: MainAxisAlignment.center,
           //       children: [
-                 
 
-                  // Text(
-                  //   'FOREVER 21',
-                  //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  // ),
-                  // Text('Big Fashion Festival'),
-                  // Text('70% - 80% Off')
+          // Text(
+          //   'FOREVER 21',
+          //   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          // ),
+          // Text('Big Fashion Festival'),
+          // Text('70% - 80% Off')
           //       ],
           //     ),
 
@@ -119,49 +118,39 @@ class Homepage extends StatelessWidget {
             ),
           ),
 
-          // Make the deals row horizontally scrollable to avoid overflow
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(),
-                    height: 200,
-                    width: 212,
+          
+          SizedBox(
+            height: 420,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 4.0,
+              ),
+              child: GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: dealImages.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  
+                  childAspectRatio: 212 / 200,
+                ),
+                itemBuilder: (context, index) {
+                  final img = dealImages[index];
+                  return Container(
+                    margin: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       color: Colors.blueGrey.shade100,
                       borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(image: AssetImage('assets/images/Top1.jpg'),fit: BoxFit.cover)
+                      image: DecorationImage(
+                        image: AssetImage(img),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  margin: const EdgeInsets.symmetric(),
-                  height: 200,
-                  width: 200,
-
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey.shade100,
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(image: AssetImage('assets/images/Top2.jpg'),fit: BoxFit.cover)
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  height: 200,
-                  width: 212,
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey.shade100,
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(image: AssetImage('assets/images/Top3.jpg'),fit: BoxFit.cover)
-                  ),
-                ),
-              ],
+                  );
+                },
+              ),
             ),
           ),
         ],
