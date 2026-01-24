@@ -20,7 +20,10 @@ class AccountScreen extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'Welcome to E-Commerce',
-                style: GoogleFonts.laila(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.laila(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 5),
               Text('Lets make your account.'),
@@ -59,7 +62,7 @@ class AccountScreen extends StatelessWidget {
                   prefixIcon: Icon(Icons.lock),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -86,23 +89,101 @@ class AccountScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/Apple.png', height: 50),
+                 
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Sign up with Apple '),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Semantics(
+                          button: true,
+                          label: 'Sign in with Apple',
+                          child: Image.asset(
+                            'assets/images/Apple.png',
+                            height: 50,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(width: 10),
-                  Image.asset('assets/images/facebook.png', height: 50),
+
+                  // Facebook sign-in
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Sign up with Facebook'),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Semantics(
+                          button: true,
+                          label: 'Sign in with Facebook',
+                          child: Image.asset(
+                            'assets/images/facebook.png',
+                            height: 50,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(width: 10),
-                  Image.asset('assets/images/Google.png', height: 50),
+
+                  // Google sign-in
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Sign up with Google'),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Semantics(
+                          button: true,
+                          label: 'Sign in with Google',
+                          child: Image.asset(
+                            'assets/images/Google.png',
+                            height: 50,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(width: 20),
-                  
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 20),
               Text('Dont have an account?'),
-                  InkWell(onTap: () {
+              InkWell(
+                onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SigninScreen()),
                   );
                 },
-                    child: Text('LogIn',style: TextStyle(fontWeight: FontWeight.bold),)),
+                child: Text(
+                  'LogIn',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
         ),

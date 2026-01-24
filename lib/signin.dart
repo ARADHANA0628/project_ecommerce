@@ -17,13 +17,9 @@ class SigninScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        
-      ),
+      appBar: AppBar(),
       body: Center(
-      
         child: SizedBox(
-
           width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -33,7 +29,10 @@ class SigninScreen extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'Welcome to E-Commerce',
-                style: GoogleFonts.laila(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.laila(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 5),
               Text('Sign in to continue'),
@@ -56,13 +55,23 @@ class SigninScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Row(children: [
-                InkWell(onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ForgotpassScreen()),
-                  );
-                },
-                  child: Text('Forget Password?', style: TextStyle(fontWeight: FontWeight.bold),))]),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ForgotpassScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Forget Password?',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
@@ -77,11 +86,12 @@ class SigninScreen extends StatelessWidget {
                   ),
                 ),
 
-                child: InkWell(onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Homepage()),
-                  );
-                },
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(
+                      context,
+                    ).push(MaterialPageRoute(builder: (context) => Homepage()));
+                  },
                   child: Text(
                     'Login',
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -96,11 +106,44 @@ class SigninScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/Apple.png', height: 50),
+                  _socialButton(
+                    context,
+                    'assets/images/Apple.png',
+                    'Sign in with Apple',
+                    () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Sign in with Apple'),
+                        ),
+                      );
+                    },
+                  ),
                   SizedBox(width: 10),
-                  Image.asset('assets/images/facebook.png', height: 50),
+                  _socialButton(
+                    context,
+                    'assets/images/facebook.png',
+                    'Sign in with Facebook',
+                    () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Sign in with Facebook'),
+                        ),
+                      );
+                    },
+                  ),
                   SizedBox(width: 10),
-                  Image.asset('assets/images/Google.png', height: 50),
+                  _socialButton(
+                    context,
+                    'assets/images/Google.png',
+                    'Sign in with Google',
+                    () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Sign in with Google'),
+                        ),
+                      );
+                    },
+                  ),
                   SizedBox(width: 20),
                 ],
               ),
@@ -123,4 +166,30 @@ class SigninScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _socialButton(
+  BuildContext context,
+  String assetPath,
+  String tooltip,
+  VoidCallback onTap,
+) {
+  return Semantics(
+    label: tooltip,
+    button: true,
+    child: Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: Tooltip(
+            message: tooltip,
+            child: Image.asset(assetPath, height: 50),
+          ),
+        ),
+      ),
+    ),
+  );
 }
